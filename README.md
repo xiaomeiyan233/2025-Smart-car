@@ -27,7 +27,7 @@ cmake ../src
 make icar  
 ./icar  
 ```
-# 代码结构  
+# 上位机代码结构  
 ```C
 ICAR
 ├─.vscode
