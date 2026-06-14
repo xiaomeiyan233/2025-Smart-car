@@ -1,0 +1,18 @@
+<?xml version="1.0" ?><annotation>
+  <filename>pedestrian210.jpg</filename>
+  <object_num>1</object_num>
+  <size>
+    <width>320</width>
+    <height>240</height>
+  </size>
+  <object>
+    <name>pedestrian</name>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>205</xmin>
+      <ymin>151</ymin>
+      <xmax>288</xmax>
+      <ymax>227</ymax>
+    </bndbox>
+  </object>
+</annotation>
