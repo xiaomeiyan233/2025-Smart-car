@@ -1,4 +1,5 @@
 # 2025-Smart-car
+# Dudaohang-Haust
 2025智能车竞赛-完全模型组国二方案  
 Dataset是数据集，在官方数据集基础上增加了一些数据量，数据集格式为VOC  
 ICAR为上位机代码，运行在Edgeboard上，在官方开源代码基础上修改了串口、重写环岛等所有元素、优化巡线、舵机改为模糊控制  
@@ -18,3 +19,53 @@ LQ_TC26xB_LIB_ADS1为下位机代码，主控为TC264，主要完成各模块驱
     (2)电机增量式PID控速、ADC电池电压检测、串口多数据包通信(重要，上下位机有多个状态变量、转角以及速度需要传输)、陀螺仪姿态解算(只是简单加了死区来克服零漂、后续可以引入四元数，结合加速度计进行数据融合来抑制零漂，但实际测试下来，这种方案已经够用了)。
 
 在轮胎不打滑的前提下，实测这套方案全元素有1.8m/，单独跑赛道大概2m/s   
+
+# 上位机代码使用方法    
+```C
+板卡系统中终端进入build文件夹  
+cmake ../src  
+make icar  
+./icar  
+```
+# 代码结构  
+```C
+ICAR
+├─.vscode
+│      c_cpp_properties.json
+│      settings.json
+├─bulid
+│      makefile
+├─res
+│      model // 存放模型
+├─src
+│└─ config
+│      cater.json // 餐饮店参数配置文件
+│      config.json // 常用参数配置文件
+│      config_ppncnms.json
+│      config_ppncnna.json
+│      layby.json // 停车区参数配置文件
+│      obstacle.json // 障碍参数配置文件
+│      parking.json // 车库参数配置文件
+│
+│
+│└─include
+│      uart.hpp// 串口类
+│      common.hpp// 公共函数头文件
+└─src
+    ├─controlcenter.cpp // 控制中心，拟合中线，计算方差
+    ├─icar.cpp // 主函数
+    ├─motion.cpp // 速度控制、转角模糊控制
+    │
+    ├─detection
+    │    |--imgprocess.cpp
+    │    |--imgprocess.h
+    │
+    ├─detection
+    │      bridge.cpp // 坡道元素处理
+    │      catering.cpp // 汉堡店元素处理
+    │      charging.cpp // 充电区停车区元素处理
+    │      crosswalk.cpp // 斑马线元素处理
+    │      layby.cpp // 临时停车区元素处理
+    │      obstacle.cpp // 障碍元素处理
+    │
+```
