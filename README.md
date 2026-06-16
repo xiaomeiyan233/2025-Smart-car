@@ -56,9 +56,10 @@ ICAR
     ├─icar.cpp // 主函数
     ├─motion.cpp // 速度控制、转角模糊控制
     │
-    ├─detection
-    │    |--imgprocess.cpp
-    │    |--imgprocess.h
+    ├─recognition
+    │    |--crossroad.cpp // 十字元素处理
+    │    |--ring.cpp // 环岛元素处理
+    │    |--tracking.cpp // 基础巡线
     │
     ├─detection
     │      bridge.cpp // 坡道元素处理
